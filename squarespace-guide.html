@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moving Your Website to Squarespace</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+  :root {
+    --ink: #1a1a1a;
+    --ink-muted: #555;
+    --ink-light: #888;
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --border: #e4e2dc;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --done: #16a34a;
+    --done-light: #f0fdf4;
+    --warn: #d97706;
+    --warn-light: #fffbeb;
+    --step-num: #2563eb;
+    --tag-you: #7c3aed;
+    --tag-you-bg: #f5f3ff;
+    --tag-them: #0369a1;
+    --tag-them-bg: #f0f9ff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* Header */
+  .doc-header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 28px;
+    margin-bottom: 40px;
+  }
+
+  .doc-header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+  }
+
+  .doc-header p {
+    color: var(--ink-muted);
+    font-size: 14px;
+  }
+
+  /* Overview box */
+  .overview {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 44px;
+  }
+
+  .overview h2 {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ink-light);
+    margin-bottom: 16px;
+  }
+
+  .overview-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .overview-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .overview-row:last-child { border-bottom: none; }
+
+  .overview-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--ink);
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .overview-text {
+    flex: 1;
+  }
+
+  .overview-title {
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .overview-sub {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+    letter-spacing: 0.3px;
+  }
+
+  .tag-you { background: var(--tag-you-bg); color: var(--tag-you); }
+  .tag-them { background: var(--tag-them-bg); color: var(--tag-them); }
+
+  /* Section headers */
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--ink-light);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* Step blocks */
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .step-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .step-number {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: var(--ink);
+    color: white;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+
+  .step-header-text { flex: 1; }
+
+  .step-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .step-meta {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  .step-body {
+    padding: 22px 24px;
+  }
+
+  .step-body p {
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+  .step-body p:last-child { margin-bottom: 0; }
+
+  /* Substeps / checklist */
+  .substeps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .substeps li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    font-size: 14px;
+    padding: 12px 14px;
+    background: var(--bg);
+    border-radius: 7px;
+    border: 1px solid var(--border);
+  }
+
+  .substeps li .check {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    margin-top: 1px;
+    background: white;
+  }
+
+  .substeps li .sub-text { flex: 1; line-height: 1.5; }
+
+  .substeps li .sub-text strong {
+    display: block;
+    font-weight: 500;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .substeps li .sub-text span {
+    color: var(--ink-muted);
+    font-size: 13px;
+  }
+
+  /* Note / callout boxes */
+  .callout {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 7px;
+    font-size: 13px;
+    margin-top: 16px;
+    line-height: 1.5;
+  }
+
+  .callout-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .callout-body { flex: 1; }
+  .callout-body strong { display: block; font-weight: 600; margin-bottom: 2px; }
+
+  .callout-info { background: var(--accent-light); color: #1e40af; border: 1px solid #bfdbfe; }
+  .callout-warn { background: var(--warn-light); color: #92400e; border: 1px solid #fde68a; }
+  .callout-done { background: var(--done-light); color: #14532d; border: 1px solid #bbf7d0; }
+
+  /* Link style */
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    padding: 6px 12px;
+    background: var(--accent-light);
+    border-radius: 5px;
+    border: 1px solid #bfdbfe;
+    margin-top: 10px;
+    text-decoration: none;
+  }
+
+  .resource-link:hover { background: #dbeafe; text-decoration: none; }
+
+  /* Divider between sections */
+  .section-gap { margin-top: 44px; margin-bottom: 20px; }
+
+  /* Handover notice */
+  .handover-notice {
+    background: var(--tag-you-bg);
+    border: 1px solid #ddd6fe;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+  }
+
+  .handover-notice h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--tag-you);
+    margin-bottom: 8px;
+  }
+
+  .handover-notice p {
+    font-size: 14px;
+    color: #4c1d95;
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  .doc-footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--ink-light);
+  }
+
+  /* DNS record table */
+  .dns-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 12px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .dns-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+
+  .dns-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    color: var(--ink);
+    vertical-align: top;
+  }
+
+  .dns-table tr:nth-child(even) td { background: var(--bg); }
+
+  @media (max-width: 600px) {
+    .page { padding: 28px 18px 60px; }
+    .step-header { padding: 16px 18px; }
+    .step-body { padding: 16px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="doc-header">
+    <h1>Moving Your Website to Squarespace</h1>
+    <p>A step-by-step guide prepared for you &mdash; no technical knowledge needed.</p>
+  </div>
+
+  <!-- Overview -->
+  <div class="overview">
+    <h2>What's involved</h2>
+    <div class="overview-steps">
+      <div class="overview-row">
+        <div class="overview-num">1</div>
+        <div class="overview-text">
+          <div class="overview-title">Your domain is moved to a new account in your name <span class="tag tag-you">Done for you</span></div>
+          <div class="overview-sub">Your web address becomes fully yours &mdash; not tied to anyone else's account</div>
+        </div>
+      </div>
+      <div class="overview-row">
+        <div class="overview-num">2</div>
+        <div class="overview-text">
+          <div class="overview-title">Your existing settings are copied across <span class="tag tag-you">Done for you</span></div>
+          <div class="overview-sub">Email and other behind-the-scenes settings are preserved</div>
+        </div>
+      </div>
+      <div class="overview-row">
+        <div class="overview-num">3</div>
+        <div class="overview-text">
+          <div class="overview-title">You build your new site in Squarespace <span class="tag tag-them">You do this</span></div>
+          <div class="overview-sub">Using a temporary address until you're happy with it</div>
+        </div>
+      </div>
+      <div class="overview-row">
+        <div class="overview-num">4</div>
+        <div class="overview-text">
+          <div class="overview-title">Your domain is pointed to your new site <span class="tag tag-them">You do this</span></div>
+          <div class="overview-sub">Your web address starts showing the Squarespace site</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Steps 1 & 2 -->
+  <div class="section-label">Steps handled for you</div>
+
+  <div class="handover-notice">
+    <h3>Before you begin &mdash; a note on steps 1 and 2</h3>
+    <p>Steps 1 and 2 will be completed and handed over to you before you start. You'll receive login details for a new domain management account (with Ionos) that is set up in your name and ready to go. You won't need to do anything for these steps &mdash; they're included here just so you understand what's been done.</p>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">1</div>
+      <div class="step-header-text">
+        <div class="step-title">Your domain is transferred to your own account</div>
+        <div class="step-meta">Handled for you &mdash; no action needed <span class="tag tag-you">Done for you</span></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>Your web address (your domain) needs to be moved out of a shared account and into an account that belongs entirely to you. This is done using a service called <strong>Ionos</strong>, which is simply a place that looks after domain names.</p>
+      <p>Once this is done, you'll be given the login details for your Ionos account. From that point, your domain is yours independently &mdash; no matter what website platform you use in future, the domain stays with you.</p>
+      <div class="callout callout-info">
+        <div class="callout-icon">ℹ</div>
+        <div class="callout-body"><strong>What Ionos is</strong> Ionos is a domain registrar &mdash; it's simply where your domain name is registered and renewed each year. It has no bearing on what your website looks like or how it works.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">2</div>
+      <div class="step-header-text">
+        <div class="step-title">Your existing settings are copied across</div>
+        <div class="step-meta">Handled for you &mdash; no action needed <span class="tag tag-you">Done for you</span></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>Behind the scenes, your domain has some settings that make things like email work correctly. These are called DNS records &mdash; think of them as a set of instructions that tell the internet where to send visitors and emails for your domain.</p>
+      <p>These settings will be copied from the old setup into your new Ionos account, so nothing breaks during the transition.</p>
+      <div class="callout callout-done">
+        <div class="callout-icon">✓</div>
+        <div class="callout-body"><strong>Your email is protected</strong> The records that make your email work (MX records) are carefully preserved during this process. Your email will continue working throughout.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Steps 3 & 4 -->
+  <div class="section-gap"></div>
+  <div class="section-label">Steps you'll carry out</div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">3</div>
+      <div class="step-header-text">
+        <div class="step-title">Set up Squarespace and build your new site</div>
+        <div class="step-meta">You do this &mdash; take your time <span class="tag tag-them">You do this</span></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>This is the main creative part. You'll sign up for Squarespace and build your new site at a temporary web address (something like <em>yourname.squarespace.com</em>). Your current site stays live throughout &mdash; there's no rush and nothing will break while you work.</p>
+
+      <ul class="substeps">
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Create a Squarespace account</strong>
+            <span>Go to squarespace.com and sign up. You can start with a free trial &mdash; you won't need to pay until you're ready to publish.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Choose a template</strong>
+            <span>Squarespace will offer you a range of starting designs. Pick one that feels close to what you want &mdash; everything can be changed later.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Recreate your pages</strong>
+            <span>Work through your existing site and rebuild each page in Squarespace. Use this as an opportunity to update any wording or photos you've been meaning to change.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Review everything carefully</strong>
+            <span>Check each page on both a computer and your phone before moving on to step 4. Once you point your domain across, this becomes your live site.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Upgrade to a paid plan when ready</strong>
+            <span>Before connecting your domain in step 4, you'll need to be on a paid Squarespace plan. The Personal plan is sufficient for most business websites.</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout callout-info" style="margin-top: 20px;">
+        <div class="callout-icon">ℹ</div>
+        <div class="callout-body"><strong>Squarespace help resources</strong> Squarespace has extensive guides and video tutorials for every part of the building process. If you get stuck, their support is very good.</div>
+      </div>
+
+      <a class="resource-link" href="https://support.squarespace.com/hc/en-us/categories/200362788" target="_blank">
+        ↗ Squarespace help: Getting started
+      </a>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">4</div>
+      <div class="step-header-text">
+        <div class="step-title">Connect your domain to your new Squarespace site</div>
+        <div class="step-meta">You do this &mdash; follow each sub-step carefully <span class="tag tag-them">You do this</span></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>This step tells the internet to start sending visitors to your new Squarespace site instead of your old one. It involves updating a few settings in two places: Squarespace and Ionos. It looks technical but each sub-step is straightforward if followed in order.</p>
+
+      <div class="callout callout-warn">
+        <div class="callout-icon">!</div>
+        <div class="callout-body"><strong>Only do this when your new site is completely ready</strong> Once these changes go through (which takes a few hours), your domain will show the Squarespace site. Make sure you're happy with it first.</div>
+      </div>
+
+      <ul class="substeps" style="margin-top: 20px;">
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Start the domain connection in Squarespace</strong>
+            <span>In Squarespace, go to Settings &rarr; Domains &rarr; Use a domain I own. Type in your domain name and choose the option to connect it (not transfer). Squarespace will then show you some specific codes you'll need for the next step.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Copy the DNS records Squarespace gives you</strong>
+            <span>Squarespace will display a verification CNAME record and a second CNAME record. Note these down carefully &mdash; you'll need to enter them into Ionos in the next step. The verification code is unique to your site.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Log in to your Ionos account and open DNS settings</strong>
+            <span>Go to ionos.co.uk and log in with the credentials provided. Find your domain, then look for DNS or DNS Settings. This is where you'll add the records from Squarespace.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Add the two CNAME records from Squarespace</strong>
+            <span>In Ionos, add each CNAME record exactly as shown in Squarespace. Don't change any of the values. If Ionos already has a CNAME entry for "www", edit it rather than adding a duplicate.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Wait for it to take effect</strong>
+            <span>DNS changes can take anywhere from a few minutes to 48 hours to fully propagate. You can check progress back in Squarespace under Settings &rarr; Domains. When connected, it will show a green confirmation.</span>
+          </div>
+        </li>
+      </ul>
+
+      <a class="resource-link" href="https://support.squarespace.com/hc/en-us/articles/205812378" target="_blank">
+        ↗ Squarespace guide: Connecting a third-party domain
+      </a>
+      <br>
+      <a class="resource-link" href="https://support.squarespace.com/hc/en-us/articles/8387079117581" target="_blank" style="margin-top: 8px;">
+        ↗ Squarespace: DNS connect vs nameserver connect explained
+      </a>
+      <br>
+      <a class="resource-link" href="https://www.ionos.co.uk/help/domains/configuring-your-ip-address-and-cname-record/configuring-a-cname-record-for-your-domain/" target="_blank" style="margin-top: 8px;">
+        ↗ Ionos guide: How to add a CNAME record
+      </a>
+
+      <div class="callout callout-info" style="margin-top: 20px;">
+        <div class="callout-icon">ℹ</div>
+        <div class="callout-body"><strong>Your email won't be affected</strong> Because your email records were set up separately in Ionos (step 2), adding the Squarespace CNAME records won't touch your email. Just be careful not to delete or edit any MX records while you're in the Ionos DNS settings.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- After it's done -->
+  <div class="section-gap"></div>
+  <div class="section-label">Once your site is live</div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number" style="background: var(--done);">✓</div>
+      <div class="step-header-text">
+        <div class="step-title">You're live &mdash; a few things to keep in mind</div>
+        <div class="step-meta">Ongoing</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <ul class="substeps">
+        <li>
+          <div class="check" style="border-color: #bbf7d0; background: #f0fdf4;"></div>
+          <div class="sub-text">
+            <strong>Renew your domain through Ionos each year</strong>
+            <span>Ionos will email you ahead of the renewal date. Keep your Ionos login details somewhere safe.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check" style="border-color: #bbf7d0; background: #f0fdf4;"></div>
+          <div class="sub-text">
+            <strong>Your Squarespace subscription renews separately</strong>
+            <span>This is charged by Squarespace directly and is separate from your domain renewal.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check" style="border-color: #bbf7d0; background: #f0fdf4;"></div>
+          <div class="sub-text">
+            <strong>You can update your site at any time</strong>
+            <span>Log in to squarespace.com to edit text, swap photos, or make any other changes whenever you like.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check" style="border-color: #bbf7d0; background: #f0fdf4;"></div>
+          <div class="sub-text">
+            <strong>Your domain is portable</strong>
+            <span>If you ever want to move away from Squarespace in the future, your domain stays in your Ionos account and is not tied to Squarespace in any way.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <p>If anything in this guide is unclear, or if you hit a snag at any point, don't hesitate to get in touch before proceeding.</p>
+  </div>
+
+</div>
+</body>
+</html>
