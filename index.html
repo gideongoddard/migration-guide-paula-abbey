@@ -286,7 +286,7 @@
 
   .callout-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; font-weight: 600; }
   .callout-body { flex: 1; }
-  .callout-body strong { display: block; font-weight: 600; margin-bottom: 2px; }
+  .callout-body strong { font-weight: 600; }
   .callout-body code {
     font-family: 'DM Mono', monospace;
     font-size: 12px;
@@ -401,7 +401,7 @@
         <div class="overview-num">3</div>
         <div class="overview-text">
           <div class="overview-title">Receive the Netlify site <span class="tag tag-them">You do this</span></div>
-          <div class="overview-sub">Accept the site transfer so hosting, forms, and build settings move across</div>
+          <div class="overview-sub">Invite Gideon to your Netlify team, then accept the site transfer (hosting, DNS, forms, and build settings)</div>
         </div>
       </div>
       <div class="overview-row">
@@ -415,7 +415,7 @@
         <div class="overview-num">5</div>
         <div class="overview-text">
           <div class="overview-title">Transfer the domain to Paula (Ionos) <span class="tag tag-you">Coordinated</span></div>
-          <div class="overview-sub">Move <code>paulaabbey.co.uk</code> into Paula's own Ionos account and keep DNS pointing at Netlify</div>
+          <div class="overview-sub">Move <code>paulaabbey.co.uk</code> into Paula's own Ionos account; confirm nameservers still point at Netlify</div>
         </div>
       </div>
       <div class="overview-row">
@@ -449,7 +449,7 @@
 
       <div class="callout callout-warn">
         <div class="callout-icon">!</div>
-        <div class="callout-body"><strong>Domain registrar is separate from hosting</strong> The domain <code>paulaabbey.co.uk</code> is currently registered in Gideon's <strong style="display: inline-block">Ionos</strong> account and still needs to be transferred into an Ionos account in Paula's name. Step 5 covers that handover.</div>
+        <div class="callout-body"><strong>Domain registrar is separate from DNS hosting</strong> The domain <code>paulaabbey.co.uk</code> is currently registered in Gideon's <strong>Ionos</strong> account and still needs to be transferred into an Ionos account in <strong>Paula's name</strong>. <strong>DNS is managed in Netlify</strong> (and moves with the site in step 3). Ionos only needs to keep the domain's nameservers pointed at Netlify. Step 5 covers the registrar handover.</div>
       </div>
 
       <div class="callout callout-done">
@@ -543,9 +543,16 @@
       </div>
     </div>
     <div class="step-body">
-      <p>Gideon will transfer the Netlify site to your Netlify team. You'll receive an email and an in-app notification.</p>
+      <p>Once your Netlify team exists (step 1), Gideon will transfer the Netlify site into it. You'll receive an email and an in-app notification when the transfer is ready to accept.</p>
 
       <ul class="substeps">
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Invite Gideon to your Netlify team</strong>
+            <span>From your new Netlify team, invite Gideon so he can initiate the site transfer into your account. You'll coordinate separately on which email address to use and what role to assign &mdash; the details aren't fixed in this guide.</span>
+          </div>
+        </li>
         <li>
           <div class="check"></div>
           <div class="sub-text">
@@ -557,7 +564,7 @@
           <div class="check"></div>
           <div class="sub-text">
             <strong>What moves across automatically</strong>
-            <span>Deploy history, the live site, custom domain configuration on Netlify, Netlify Forms submissions, form notification settings, and build settings. Essentially, the site continues running as it did, just under your account.</span>
+            <span>Deploy history, the live site, custom domain and <strong>Netlify DNS</strong> (DNS zone and records), Netlify Forms submissions, form notification settings, and build settings. Essentially, the site continues running as it did, just under your account.</span>
           </div>
         </li>
         <li>
@@ -569,9 +576,14 @@
         </li>
       </ul>
 
+      <div class="callout callout-done">
+        <div class="callout-icon">&check;</div>
+        <div class="callout-body"><strong>No DNS reconfiguration in this step</strong> Because the domain uses Netlify DNS, the DNS records come with the site transfer. Nameservers at Ionos should already point at Netlify and don't need changing for steps 3 and 4.</div>
+      </div>
+
       <div class="callout callout-info">
         <div class="callout-icon">ℹ</div>
-        <div class="callout-body"><strong>Ionos is not part of the Netlify transfer</strong> Domain registration and DNS at Ionos stay where they are until step 5. The site should remain reachable throughout steps 3 and 4 as long as existing DNS records are unchanged.</div>
+        <div class="callout-body"><strong>Ionos is not part of the Netlify transfer</strong> Domain <em>registration</em> at Ionos stays in Gideon's account until step 5. The site should remain reachable throughout steps 3 and 4.</div>
       </div>
     </div>
   </div>
@@ -622,11 +634,11 @@
       </div>
     </div>
     <div class="step-body">
-      <p>The domain <code>paulaabbey.co.uk</code> should be registered and renewed in <strong>Paula's own Ionos account</strong>, not Gideon's. Gideon will start the Ionos transfer (or equivalent handover) once Paula has an account ready. DNS must continue to send website traffic to Netlify and must preserve any email-related records.</p>
+      <p>The domain <code>paulaabbey.co.uk</code> should be registered and renewed in <strong>Paula's own Ionos account</strong>, not Gideon's. Gideon will start the Ionos transfer once Paula has an account ready. You do not need to recreate DNS records in Ionos &mdash; DNS stays on Netlify (step 3). After the domain moves between Ionos accounts, check that Ionos still lists Netlify's nameservers for the domain.</p>
 
       <div class="callout callout-warn">
         <div class="callout-icon">!</div>
-        <div class="callout-body"><strong>Plan DNS changes carefully</strong> While moving or editing DNS at Ionos, do not remove or alter <strong>MX records</strong> (and any related records Paula relies on for email) unless you know exactly what you're replacing them with.</div>
+        <div class="callout-body"><strong>Check nameservers after the Ionos transfer</strong> Moving a domain between Ionos accounts can sometimes reset or change nameserver settings. In Paula's Ionos account, confirm the domain still uses <strong>Netlify's nameservers</strong> (the same values as before the transfer). If they were changed, point them back to Netlify before considering step 5 complete.</div>
       </div>
 
       <ul class="substeps" style="margin-top: 20px;">
@@ -654,20 +666,11 @@
         <li>
           <div class="check"></div>
           <div class="sub-text">
-            <strong>Confirm website DNS still points at Netlify</strong>
-            <span>In Ionos DNS settings, verify the records that send <code>www</code> and the apex domain to Netlify match what Netlify shows under <strong>Domain management</strong> for the site (often a load-balancer hostname or the records Netlify documents for external DNS). If records were copied during transfer, spot-check them against the live site.</span>
-          </div>
-        </li>
-        <li>
-          <div class="check"></div>
-          <div class="sub-text">
-            <strong>Confirm HTTPS on Netlify</strong>
-            <span>In Netlify <strong>Domain management</strong>, <code>paulaabbey.co.uk</code> should remain the primary domain with a valid certificate after any DNS work.</span>
+            <strong>Confirm nameservers still point at Netlify</strong>
+            <span>In Paula's Ionos domain settings, verify the nameservers are still Netlify's (not Ionos defaults). Compare with the nameservers shown in Netlify under <strong>Domain management</strong> for the site if needed. The live site and HTTPS should keep working once this is correct.</span>
           </div>
         </li>
       </ul>
-
-      <a class="resource-link" href="https://docs.netlify.com/domains-https/custom-domains/configure-external-dns/" target="_blank">↗ Netlify: Configure external DNS</a>
     </div>
   </div>
 
@@ -715,7 +718,7 @@
           <div class="check"></div>
           <div class="sub-text">
             <strong>Domain is in Paula's Ionos account</strong>
-            <span>Paula can log in to Ionos and see <code>paulaabbey.co.uk</code> under her domains. Gideon no longer needs to renew it on her behalf.</span>
+            <span>Paula can log in to Ionos and see <code>paulaabbey.co.uk</code> under her domains, with nameservers still pointing at Netlify. Gideon no longer needs to renew it on her behalf.</span>
           </div>
         </li>
       </ul>
