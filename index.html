@@ -252,11 +252,16 @@
 
   .substeps li .sub-text { flex: 1; line-height: 1.5; }
 
-  .substeps li .sub-text strong {
+  .substeps li .sub-text > strong {
     display: block;
     font-weight: 500;
     color: var(--ink);
     margin-bottom: 2px;
+  }
+
+  .substeps li .sub-text span strong {
+    font-weight: 600;
+    color: var(--ink);
   }
 
   .substeps li .sub-text span {
