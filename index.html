@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Moving Your Website to Squarespace</title>
+<title>Website Handover &mdash; Paula Abbey Counselling</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap');
 
@@ -20,7 +20,8 @@
     --done-light: #f0fdf4;
     --warn: #d97706;
     --warn-light: #fffbeb;
-    --step-num: #2563eb;
+    --danger: #dc2626;
+    --danger-light: #fef2f2;
     --tag-you: #7c3aed;
     --tag-you-bg: #f5f3ff;
     --tag-them: #0369a1;
@@ -35,27 +36,34 @@
     color: var(--ink);
     font-size: 15px;
     line-height: 1.7;
-    padding: 0;
   }
 
   .page {
-    max-width: 720px;
+    max-width: 760px;
     margin: 0 auto;
     padding: 48px 32px 80px;
   }
 
-  /* Header */
   .doc-header {
     border-bottom: 2px solid var(--ink);
     padding-bottom: 28px;
     margin-bottom: 40px;
   }
 
+  .doc-header .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+  }
+
   .doc-header h1 {
     font-size: 26px;
     font-weight: 600;
     letter-spacing: -0.3px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   .doc-header p {
@@ -63,7 +71,6 @@
     font-size: 14px;
   }
 
-  /* Overview box */
   .overview {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -84,7 +91,6 @@
   .overview-steps {
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
 
   .overview-row {
@@ -112,9 +118,7 @@
     margin-top: 1px;
   }
 
-  .overview-text {
-    flex: 1;
-  }
+  .overview-text { flex: 1; }
 
   .overview-title {
     font-weight: 500;
@@ -140,7 +144,6 @@
   .tag-you { background: var(--tag-you-bg); color: var(--tag-you); }
   .tag-them { background: var(--tag-them-bg); color: var(--tag-them); }
 
-  /* Section headers */
   .section-label {
     font-size: 11px;
     font-weight: 600;
@@ -152,7 +155,6 @@
     border-bottom: 1px solid var(--border);
   }
 
-  /* Step blocks */
   .step {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -209,7 +211,16 @@
 
   .step-body p:last-child { margin-bottom: 0; }
 
-  /* Substeps / checklist */
+  .step-body code {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    background: var(--bg);
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+
   .substeps {
     list-style: none;
     display: flex;
@@ -253,7 +264,16 @@
     font-size: 13px;
   }
 
-  /* Note / callout boxes */
+  .substeps li .sub-text code {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    background: white;
+    padding: 1px 5px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--ink);
+  }
+
   .callout {
     display: flex;
     gap: 12px;
@@ -264,15 +284,25 @@
     line-height: 1.5;
   }
 
-  .callout-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .callout-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; font-weight: 600; }
   .callout-body { flex: 1; }
   .callout-body strong { display: block; font-weight: 600; margin-bottom: 2px; }
+  .callout-body code {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
 
   .callout-info { background: var(--accent-light); color: #1e40af; border: 1px solid #bfdbfe; }
+  .callout-info code { background: white; border: 1px solid #bfdbfe; }
   .callout-warn { background: var(--warn-light); color: #92400e; border: 1px solid #fde68a; }
+  .callout-warn code { background: white; border: 1px solid #fde68a; }
   .callout-done { background: var(--done-light); color: #14532d; border: 1px solid #bbf7d0; }
+  .callout-done code { background: white; border: 1px solid #bbf7d0; }
+  .callout-danger { background: var(--danger-light); color: #991b1b; border: 1px solid #fecaca; }
+  .callout-danger code { background: white; border: 1px solid #fecaca; }
 
-  /* Link style */
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
@@ -288,16 +318,15 @@
     border-radius: 5px;
     border: 1px solid #bfdbfe;
     margin-top: 10px;
+    margin-right: 6px;
     text-decoration: none;
   }
 
   .resource-link:hover { background: #dbeafe; text-decoration: none; }
 
-  /* Divider between sections */
   .section-gap { margin-top: 44px; margin-bottom: 20px; }
 
-  /* Handover notice */
-  .handover-notice {
+  .context-notice {
     background: var(--tag-you-bg);
     border: 1px solid #ddd6fe;
     border-radius: 10px;
@@ -305,20 +334,22 @@
     margin-bottom: 28px;
   }
 
-  .handover-notice h3 {
+  .context-notice h3 {
     font-size: 14px;
     font-weight: 600;
     color: var(--tag-you);
     margin-bottom: 8px;
   }
 
-  .handover-notice p {
+  .context-notice p {
     font-size: 14px;
     color: #4c1d95;
     line-height: 1.6;
+    margin-bottom: 10px;
   }
 
-  /* Footer */
+  .context-notice p:last-child { margin-bottom: 0; }
+
   .doc-footer {
     margin-top: 56px;
     padding-top: 24px;
@@ -326,35 +357,6 @@
     font-size: 13px;
     color: var(--ink-light);
   }
-
-  /* DNS record table */
-  .dns-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    margin-top: 12px;
-    font-family: 'DM Mono', monospace;
-  }
-
-  .dns-table th {
-    text-align: left;
-    padding: 8px 12px;
-    background: var(--bg);
-    border: 1px solid var(--border);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    font-size: 12px;
-    color: var(--ink-muted);
-  }
-
-  .dns-table td {
-    padding: 8px 12px;
-    border: 1px solid var(--border);
-    color: var(--ink);
-    vertical-align: top;
-  }
-
-  .dns-table tr:nth-child(even) td { background: var(--bg); }
 
   @media (max-width: 600px) {
     .page { padding: 28px 18px 60px; }
@@ -367,68 +369,133 @@
 <div class="page">
 
   <div class="doc-header">
-    <h1>Moving Your Website to Squarespace</h1>
-    <p>A step-by-step guide prepared for you &mdash; no technical knowledge needed.</p>
+    <div class="eyebrow">Website handover</div>
+    <h1>Paula Abbey Counselling &mdash; transferring ownership</h1>
+    <p>A step-by-step guide for transferring the site, its hosting, and its code repository into your ownership.</p>
   </div>
 
-  <!-- Overview -->
+  <div class="context-notice">
+    <h3>Who this guide is for</h3>
+    <p>This document is for the developer taking over maintenance of the Paula Abbey Counselling website. It covers the one-time transfer of ownership only &mdash; for ongoing reference about how the site is built and maintained, see the <code>README.md</code> in the code repository.</p>
+    <p>Work through the steps in order. Some of them need to happen at specific points relative to others, so skipping ahead can cause brief outages.</p>
+  </div>
+
   <div class="overview">
     <h2>What's involved</h2>
     <div class="overview-steps">
       <div class="overview-row">
         <div class="overview-num">1</div>
         <div class="overview-text">
-          <div class="overview-title">Your domain is moved to a new account in your name <span class="tag tag-you">Done for you</span></div>
-          <div class="overview-sub">Your web address becomes fully yours &mdash; not tied to anyone else's account</div>
+          <div class="overview-title">Create the accounts you'll need <span class="tag tag-them">You do this</span></div>
+          <div class="overview-sub">GitHub account and Netlify team, if you don't already have them</div>
         </div>
       </div>
       <div class="overview-row">
         <div class="overview-num">2</div>
         <div class="overview-text">
-          <div class="overview-title">Your existing settings are copied across <span class="tag tag-you">Done for you</span></div>
-          <div class="overview-sub">Email and other behind-the-scenes settings are preserved</div>
+          <div class="overview-title">Receive the GitHub repository <span class="tag tag-them">You do this</span></div>
+          <div class="overview-sub">Accept the repository transfer so the code is now under your account</div>
         </div>
       </div>
       <div class="overview-row">
         <div class="overview-num">3</div>
         <div class="overview-text">
-          <div class="overview-title">You build your new site in Squarespace <span class="tag tag-them">You do this</span></div>
-          <div class="overview-sub">Using a temporary address until you're happy with it</div>
+          <div class="overview-title">Receive the Netlify site <span class="tag tag-them">You do this</span></div>
+          <div class="overview-sub">Accept the site transfer so hosting, forms, and build settings move across</div>
         </div>
       </div>
       <div class="overview-row">
         <div class="overview-num">4</div>
         <div class="overview-text">
-          <div class="overview-title">Your domain is pointed to your new site <span class="tag tag-them">You do this</span></div>
-          <div class="overview-sub">Your web address starts showing the Squarespace site</div>
+          <div class="overview-title">Reconnect the GitHub integration <span class="tag tag-them">You do this</span></div>
+          <div class="overview-sub">Authorise Netlify to access the repository under your account</div>
+        </div>
+      </div>
+      <div class="overview-row">
+        <div class="overview-num">5</div>
+        <div class="overview-text">
+          <div class="overview-title">Transfer the domain to Paula (Ionos) <span class="tag tag-you">Coordinated</span></div>
+          <div class="overview-sub">Move <code>paulaabbey.co.uk</code> into Paula's own Ionos account and keep DNS pointing at Netlify</div>
+        </div>
+      </div>
+      <div class="overview-row">
+        <div class="overview-num">6</div>
+        <div class="overview-text">
+          <div class="overview-title">Verify everything works <span class="tag tag-them">You do this</span></div>
+          <div class="overview-sub">Check the site, the contact form, the build pipeline, and the domain with HTTPS</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Steps 1 & 2 -->
-  <div class="section-label">Steps handled for you</div>
+  <div class="section-label">Before you begin</div>
 
-  <div class="handover-notice">
-    <h3>Before you begin &mdash; a note on steps 1 and 2</h3>
-    <p>Steps 1 and 2 will be completed and handed over to you before you start. You'll receive login details for a new domain management account (with Ionos) that is set up in your name and ready to go. You won't need to do anything for these steps &mdash; they're included here just so you understand what's been done.</p>
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number" style="background: var(--accent);">i</div>
+      <div class="step-header-text">
+        <div class="step-title">What you're taking on</div>
+        <div class="step-meta">Context for the rest of the guide</div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>The website is built with <strong>Gatsby</strong> (a React-based static site generator), hosted on <strong>Netlify</strong>, with the code in a private <strong>GitHub</strong> repository (<code>paula-abbey</code>). There is <strong>no CMS</strong>: page content and layout live in the codebase, not in an admin panel. Wording or structural changes are made by editing the repository and deploying.</p>
+      <p>Contact form submissions go through <strong>Netlify Forms</strong> and arrive by email. There is no database. Each deploy rebuilds the entire site from the code and publishes the new version. This takes around a minute or two per build.</p>
+
+      <div class="callout callout-info">
+        <div class="callout-icon">ℹ</div>
+        <div class="callout-body"><strong>The README has the detail</strong> For a full explanation of the stack, how to run it locally, and how to maintain it, read <code>README.md</code> in the repository. This guide focuses only on getting ownership transferred cleanly.</div>
+      </div>
+
+      <div class="callout callout-warn">
+        <div class="callout-icon">!</div>
+        <div class="callout-body"><strong>Domain registrar is separate from hosting</strong> The domain <code>paulaabbey.co.uk</code> is currently registered in Gideon's <strong>Ionos</strong> account and still needs to be transferred into an Ionos account in <strong>Paula's name</strong>. Netlify hosts the site; Ionos holds the domain registration and (typically) the DNS records that point visitors to Netlify. Step 5 covers that handover.</div>
+      </div>
+
+      <div class="callout callout-done">
+        <div class="callout-icon">&check;</div>
+        <div class="callout-body"><strong>No CMS means a simpler handover</strong> Unlike some other sites in this family, there is no Netlify CMS, Identity, or GitHub OAuth to swap. You won't need an admin login step &mdash; but content updates are developer-led unless you add a CMS later.</div>
+      </div>
+    </div>
   </div>
+
+  <div class="section-gap"></div>
+  <div class="section-label">The handover, step by step</div>
 
   <div class="step">
     <div class="step-header">
       <div class="step-number">1</div>
       <div class="step-header-text">
-        <div class="step-title">Your domain is transferred to your own account</div>
-        <div class="step-meta">Handled for you &mdash; no action needed <span class="tag tag-you">Done for you</span></div>
+        <div class="step-title">Create the accounts you'll need</div>
+        <div class="step-meta">You do this &mdash; 5 to 10 minutes <span class="tag tag-them">You do this</span></div>
       </div>
     </div>
     <div class="step-body">
-      <p>Your web address (your domain) needs to be moved out of a shared account and into an account that belongs entirely to you. This is done using a service called <strong>Ionos</strong>, which is simply a place that looks after domain names.</p>
-      <p>Once this is done, you'll be given the login details for your Ionos account. From that point, your domain is yours independently &mdash; no matter what website platform you use in future, the domain stays with you.</p>
-      <div class="callout callout-info">
-        <div class="callout-icon">ℹ</div>
-        <div class="callout-body"><strong>What Ionos is</strong> Ionos is a domain registrar &mdash; it's simply where your domain name is registered and renewed each year. It has no bearing on what your website looks like or how it works.</div>
-      </div>
+      <p>You'll need a GitHub account and a Netlify account. If you already have personal ones you're comfortable using for this, they're fine. Otherwise, create them now.</p>
+
+      <ul class="substeps">
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>GitHub account</strong>
+            <span>Sign up at <a href="https://github.com/signup" target="_blank">github.com/signup</a>. A free personal account is sufficient. Make a note of the username &mdash; you'll need to share it in step 2.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Netlify account</strong>
+            <span>Sign up at <a href="https://app.netlify.com/signup" target="_blank">app.netlify.com/signup</a>. You'll be prompted to create a team &mdash; a free Starter team is fine. Sign up using your GitHub account if you want; it makes later steps slightly smoother.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Share both with Gideon</strong>
+            <span>He'll need your GitHub username (for the repo transfer) and the email address on your Netlify account (for the site transfer).</span>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 
@@ -436,81 +503,76 @@
     <div class="step-header">
       <div class="step-number">2</div>
       <div class="step-header-text">
-        <div class="step-title">Your existing settings are copied across</div>
-        <div class="step-meta">Handled for you &mdash; no action needed <span class="tag tag-you">Done for you</span></div>
+        <div class="step-title">Receive the GitHub repository</div>
+        <div class="step-meta">You do this &mdash; a few minutes <span class="tag tag-them">You do this</span></div>
       </div>
     </div>
     <div class="step-body">
-      <p>Behind the scenes, your domain has some settings that make things like email work correctly. These are called DNS records &mdash; think of them as a set of instructions that tell the internet where to send visitors and emails for your domain.</p>
-      <p>These settings will be copied from the old setup into your new Ionos account, so nothing breaks during the transition.</p>
-      <div class="callout callout-done">
-        <div class="callout-icon">✓</div>
-        <div class="callout-body"><strong>Your email is protected</strong> The records that make your email work (MX records) are carefully preserved during this process. Your email will continue working throughout.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Steps 3 & 4 -->
-  <div class="section-gap"></div>
-  <div class="section-label">Steps you'll carry out</div>
-
-  <div class="step">
-    <div class="step-header">
-      <div class="step-number">3</div>
-      <div class="step-header-text">
-        <div class="step-title">Set up Squarespace and build your new site</div>
-        <div class="step-meta">You do this &mdash; take your time <span class="tag tag-them">You do this</span></div>
-      </div>
-    </div>
-    <div class="step-body">
-      <p>This is the main creative part. You'll sign up for Squarespace and build your new site at a temporary web address (something like <em>yourname.squarespace.com</em>). Your current site stays live throughout &mdash; there's no rush and nothing will break while you work.</p>
+      <p>Gideon will initiate a repository transfer from his GitHub account to yours. You'll receive an email from GitHub asking you to accept.</p>
 
       <ul class="substeps">
         <li>
           <div class="check"></div>
           <div class="sub-text">
-            <strong>Create a Squarespace account</strong>
-            <span>Go to squarespace.com and sign up. You can start with a free trial &mdash; you won't need to pay until you're ready to publish.</span>
+            <strong>Accept the transfer</strong>
+            <span>Open the email from GitHub and click the link to accept. Alternatively, log in to GitHub and look for the pending transfer notification at the top of your dashboard.</span>
           </div>
         </li>
         <li>
           <div class="check"></div>
           <div class="sub-text">
-            <strong>Choose a template</strong>
-            <span>Squarespace will offer you a range of starting designs. Pick one that feels close to what you want &mdash; everything can be changed later.</span>
-          </div>
-        </li>
-        <li>
-          <div class="check"></div>
-          <div class="sub-text">
-            <strong>Recreate your pages</strong>
-            <span>Work through your existing site and rebuild each page in Squarespace. Use this as an opportunity to update any wording or photos you've been meaning to change.</span>
-          </div>
-        </li>
-        <li>
-          <div class="check"></div>
-          <div class="sub-text">
-            <strong>Review everything carefully</strong>
-            <span>Check each page on both a computer and your phone before moving on to step 4. Once you point your domain across, this becomes your live site.</span>
-          </div>
-        </li>
-        <li>
-          <div class="check"></div>
-          <div class="sub-text">
-            <strong>Upgrade to a paid plan when ready</strong>
-            <span>Before connecting your domain in step 4, you'll need to be on a paid Squarespace plan. The Personal plan is sufficient for most business websites.</span>
+            <strong>Confirm the repo appears in your account</strong>
+            <span>The repository should now be at <code>https://github.com/&lt;your-username&gt;/paula-abbey</code>. All commit history, branches, and settings come with it.</span>
           </div>
         </li>
       </ul>
 
-      <div class="callout callout-info" style="margin-top: 20px;">
+      <div class="callout callout-info">
         <div class="callout-icon">ℹ</div>
-        <div class="callout-body"><strong>Squarespace help resources</strong> Squarespace has extensive guides and video tutorials for every part of the building process. If you get stuck, their support is very good.</div>
+        <div class="callout-body"><strong>The repo name stays as <code>paula-abbey</code></strong> If you rename the repository later, update any references in Netlify's build settings and anywhere else the old name appears.</div>
       </div>
+    </div>
+  </div>
 
-      <a class="resource-link" href="https://support.squarespace.com/hc/en-us" target="_blank">
-        ↗ Squarespace help: Getting started
-      </a>
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">3</div>
+      <div class="step-header-text">
+        <div class="step-title">Receive the Netlify site</div>
+        <div class="step-meta">You do this &mdash; a few minutes <span class="tag tag-them">You do this</span></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>Gideon will transfer the Netlify site to your Netlify team. You'll receive an email and an in-app notification.</p>
+
+      <ul class="substeps">
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Accept the transfer in Netlify</strong>
+            <span>Log in to Netlify and look for the pending transfer notification, or follow the link in the email. Confirm acceptance.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>What moves across automatically</strong>
+            <span>Deploy history, the live site, custom domain configuration on Netlify, Netlify Forms submissions, form notification settings, and build settings. Essentially, the site continues running as it did, just under your account.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>One thing that doesn't move</strong>
+            <span>The connection between the Netlify site and the GitHub repository. That's reconnected in step 4. Until then, the site is still live &mdash; new commits just won't trigger builds.</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout callout-info">
+        <div class="callout-icon">ℹ</div>
+        <div class="callout-body"><strong>Ionos is not part of the Netlify transfer</strong> Domain registration and DNS at Ionos stay where they are until step 5. The site should remain reachable throughout steps 3 and 4 as long as existing DNS records are unchanged.</div>
+      </div>
     </div>
   </div>
 
@@ -518,70 +580,162 @@
     <div class="step-header">
       <div class="step-number">4</div>
       <div class="step-header-text">
-        <div class="step-title">Connect your domain to your new Squarespace site</div>
-        <div class="step-meta">You do this &mdash; follow each sub-step carefully <span class="tag tag-them">You do this</span></div>
+        <div class="step-title">Reconnect the GitHub integration</div>
+        <div class="step-meta">You do this &mdash; a few minutes <span class="tag tag-them">You do this</span></div>
       </div>
     </div>
     <div class="step-body">
-      <p>This step tells the internet to start sending visitors to your new Squarespace site instead of your old one. It involves updating a few settings in two places: Squarespace and Ionos. It looks technical but each sub-step is straightforward if followed in order.</p>
+      <p>Netlify needs permission from your GitHub account to read the repository and trigger builds when you push commits. This permission is user-specific, so it needs re-authorising under your account.</p>
+
+      <ul class="substeps">
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Open the site's build settings in Netlify</strong>
+            <span>In the transferred site, go to <strong>Site configuration &rarr; Build &amp; deploy &rarr; Continuous deployment</strong>. You should see a prompt to reconnect or reauthorise GitHub access.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Authorise Netlify on GitHub</strong>
+            <span>Follow the prompts. You'll be bounced to GitHub to approve the Netlify app for your account and grant it access to the <code>paula-abbey</code> repository. Approve it.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Trigger a test build</strong>
+            <span>Back in Netlify, go to <strong>Deploys</strong> and click <strong>Trigger deploy &rarr; Deploy site</strong>. Watch the build log. If it completes successfully, the integration is working.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">5</div>
+      <div class="step-header-text">
+        <div class="step-title">Transfer the domain to Paula (Ionos)</div>
+        <div class="step-meta">Coordinated with Gideon and Paula <span class="tag tag-you">Coordinated</span></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>The domain <code>paulaabbey.co.uk</code> should be registered and renewed in <strong>Paula's own Ionos account</strong>, not Gideon's. Gideon will start the Ionos transfer (or equivalent handover) once Paula has an account ready. DNS must continue to send website traffic to Netlify and must preserve any email-related records.</p>
 
       <div class="callout callout-warn">
         <div class="callout-icon">!</div>
-        <div class="callout-body"><strong>Only do this when your new site is completely ready</strong> Once these changes go through (which takes a few hours), your domain will show the Squarespace site. Make sure you're happy with it first.</div>
+        <div class="callout-body"><strong>Plan DNS changes carefully</strong> While moving or editing DNS at Ionos, do not remove or alter <strong>MX records</strong> (and any related records Paula relies on for email) unless you know exactly what you're replacing them with.</div>
       </div>
 
       <ul class="substeps" style="margin-top: 20px;">
         <li>
           <div class="check"></div>
           <div class="sub-text">
-            <strong>Start the domain connection in Squarespace</strong>
-            <span>In Squarespace, go to Settings &rarr; Domains &rarr; Use a domain I own. Type in your domain name and choose the option to connect it (not transfer).</span>
+            <strong>Paula has an Ionos account in her name</strong>
+            <span>Paula creates or identifies the Ionos login that should own the domain going forward. She shares the contact email Ionos needs with Gideon so he can initiate the transfer from his account.</span>
           </div>
         </li>
         <li>
           <div class="check"></div>
           <div class="sub-text">
-            <strong>Copy the DNS records Squarespace gives you</strong>
-            <span>Squarespace will display a verification CNAME record and a second CNAME record. Note these down carefully &mdash; you'll need to enter them into Ionos in the next step. The verification code is unique to your site.</span>
+            <strong>Gideon initiates the domain move</strong>
+            <span>From his Ionos account, Gideon starts the transfer of <code>paulaabbey.co.uk</code> to Paula's Ionos account, following Ionos's on-screen process (auth codes or approval emails as required).</span>
           </div>
         </li>
         <li>
           <div class="check"></div>
           <div class="sub-text">
-            <strong>Approve the connection in Ionos</strong>
-            <span>You should be guided to an Ionos pop-up to log in with the credentials provided. Here you'll need to follow the on-screen guidance to confirm the connection.</span>
+            <strong>Paula accepts and confirms ownership</strong>
+            <span>Paula completes any acceptance steps in Ionos. Once finished, she &mdash; not Gideon &mdash; receives renewal reminders and controls the domain registration.</span>
           </div>
         </li>
         <li>
           <div class="check"></div>
           <div class="sub-text">
-            <strong>Wait for it to take effect</strong>
-            <span>These changes can take anywhere from a few minutes to 48 hours to fully propagate. You can check progress back in Squarespace under Settings &rarr; Domains. When connected, it will show a green confirmation.</span>
+            <strong>Confirm website DNS still points at Netlify</strong>
+            <span>In Ionos DNS settings, verify the records that send <code>www</code> and the apex domain to Netlify match what Netlify shows under <strong>Domain management</strong> for the site (often a load-balancer hostname or the records Netlify documents for external DNS). If records were copied during transfer, spot-check them against the live site.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Confirm HTTPS on Netlify</strong>
+            <span>In Netlify <strong>Domain management</strong>, <code>paulaabbey.co.uk</code> should remain the primary domain with a valid certificate after any DNS work.</span>
           </div>
         </li>
       </ul>
 
-      <a class="resource-link" href="https://support.squarespace.com/hc/en-us/articles/205812408-Connecting-an-IONOS-domain-to-your-Squarespace-site" target="_blank">
-        ↗ Squarespace guide: Connecting an Ionos domain to your Squarespace site
-      </a>
+      <a class="resource-link" href="https://docs.netlify.com/domains-https/custom-domains/configure-external-dns/" target="_blank">↗ Netlify: Configure external DNS</a>
+    </div>
+  </div>
 
-      <div class="callout callout-info" style="margin-top: 20px;">
-        <div class="callout-icon">ℹ</div>
-        <div class="callout-body"><strong>Your email won't be affected</strong> Because your email records were set up separately in Ionos (step 2), adding the Squarespace CNAME records won't touch your email. Just be careful not to delete or edit any MX records while you're in the Ionos DNS settings.</div>
+  <div class="step">
+    <div class="step-header">
+      <div class="step-number">6</div>
+      <div class="step-header-text">
+        <div class="step-title">Verify everything works</div>
+        <div class="step-meta">You do this &mdash; 15 minutes <span class="tag tag-them">You do this</span></div>
+      </div>
+    </div>
+    <div class="step-body">
+      <p>Before calling the handover complete, run through this checklist end-to-end. If anything fails, stop and troubleshoot before moving on.</p>
+
+      <ul class="substeps">
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>The live site loads</strong>
+            <span>Visit <code>https://paulaabbey.co.uk</code> in a browser. Check the homepage and main sections (About, Services, Appointments, FAQ, and any other linked pages). Test on a phone as well as a desktop.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>A code change triggers a build</strong>
+            <span>Clone the repository locally (or edit a file on GitHub), make a trivial change, commit, and push. Watch the Netlify <strong>Deploys</strong> tab &mdash; a new deploy should start within seconds and complete successfully.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Contact form submission arrives</strong>
+            <span>Submit the contact form on the live site with test content. Confirm the submission appears in Netlify under <strong>Forms</strong>, and that the notification email reaches Paula (or the address configured in Netlify).</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Domain and SSL</strong>
+            <span>The site loads over HTTPS with a valid certificate. In Netlify <strong>Domain management</strong>, the custom domain is primary and HTTPS is enabled.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check"></div>
+          <div class="sub-text">
+            <strong>Domain is in Paula's Ionos account</strong>
+            <span>Paula can log in to Ionos and see <code>paulaabbey.co.uk</code> under her domains. Gideon no longer needs to renew it on her behalf.</span>
+          </div>
+        </li>
+      </ul>
+
+      <div class="callout callout-done">
+        <div class="callout-icon">&check;</div>
+        <div class="callout-body"><strong>If everything above passes, the handover is complete</strong> You own the code and hosting on your GitHub and Netlify accounts. Paula owns the domain at Ionos. Nothing critical remains tied to Gideon's accounts.</div>
       </div>
     </div>
   </div>
 
-  <!-- After it's done -->
   <div class="section-gap"></div>
-  <div class="section-label">Once your site is live</div>
+  <div class="section-label">After the handover</div>
 
   <div class="step">
     <div class="step-header">
-      <div class="step-number" style="background: var(--done);">✓</div>
+      <div class="step-number" style="background: var(--done);">&check;</div>
       <div class="step-header-text">
-        <div class="step-title">You're live &mdash; a few things to keep in mind</div>
-        <div class="step-meta">Ongoing</div>
+        <div class="step-title">Ongoing responsibilities</div>
+        <div class="step-meta">What's now on your plate</div>
       </div>
     </div>
     <div class="step-body">
@@ -589,29 +743,36 @@
         <li>
           <div class="check" style="border-color: #bbf7d0; background: #f0fdf4;"></div>
           <div class="sub-text">
-            <strong>Renew your domain through Ionos each year</strong>
-            <span>Ionos will email you ahead of the renewal date. Keep your Ionos login details somewhere safe.</span>
+            <strong>Hosting costs</strong>
+            <span>Netlify's Starter plan is free and handles this site's traffic comfortably. Upgrade if traffic grows or you need additional Netlify features.</span>
           </div>
         </li>
         <li>
           <div class="check" style="border-color: #bbf7d0; background: #f0fdf4;"></div>
           <div class="sub-text">
-            <strong>Your Squarespace subscription renews separately</strong>
-            <span>This is charged by Squarespace directly and is separate from your domain renewal.</span>
+            <strong>Domain renewal</strong>
+            <span>Once step 5 is complete, Paula renews <code>paulaabbey.co.uk</code> through her Ionos account. Keep those login details safe.</span>
           </div>
         </li>
         <li>
           <div class="check" style="border-color: #bbf7d0; background: #f0fdf4;"></div>
           <div class="sub-text">
-            <strong>You can update your site at any time</strong>
-            <span>Log in to squarespace.com to edit text, swap photos, or make any other changes whenever you like.</span>
+            <strong>Content updates</strong>
+            <span>There is no CMS. Copy and layout changes go through the repository and a deploy. Agree with Paula how she'll request updates and how quickly you'll ship them.</span>
           </div>
         </li>
         <li>
           <div class="check" style="border-color: #bbf7d0; background: #f0fdf4;"></div>
           <div class="sub-text">
-            <strong>Your domain is portable</strong>
-            <span>If you ever want to move away from Squarespace in the future, your domain stays in your Ionos account and is not tied to Squarespace in any way.</span>
+            <strong>Security of your accounts</strong>
+            <span>Enable two-factor authentication on both GitHub and Netlify. The site's source code and hosting are accessible through those accounts.</span>
+          </div>
+        </li>
+        <li>
+          <div class="check" style="border-color: #bbf7d0; background: #f0fdf4;"></div>
+          <div class="sub-text">
+            <strong>Ongoing maintenance</strong>
+            <span>Gatsby, Node, and other dependencies will need periodic upgrades. Use the README as the living technical reference and schedule upgrades at a pace you're comfortable with.</span>
           </div>
         </li>
       </ul>
@@ -619,7 +780,7 @@
   </div>
 
   <div class="doc-footer">
-    <p>If anything in this guide is unclear, or if you hit a snag at any point, don't hesitate to get in touch before proceeding.</p>
+    <p>If anything in this guide is unclear, or if a step doesn't behave as described, reach out before proceeding &mdash; a short conversation is much cheaper than an unexplained outage.</p>
   </div>
 
 </div>
